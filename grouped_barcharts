@@ -1,0 +1,68 @@
+import pandas as pd
+from plotly.subplots import make_subplots
+from plotly import graph_objects as go
+import openpyxl
+
+
+df = pd.read_excel(r'C:\Users\Dell\Desktop\OneDrive - City, University of London\Documents\BM1100\project\red02nov2021_edited.xlsx')
+
+print(df)
+
+
+total = list(df.iloc[0])
+all_emp = list(df.iloc[1])
+finance = list(df.iloc[2])
+print(total, all_emp, finance)
+
+# Now make a bar chart with 3 grouped bar charts with age groups
+
+fig = make_subplots(rows=1, cols=3)
+
+total_1 = []
+for i in range(1, 5):
+    total_1.append(total[i]*1000)
+
+ages = ["18-24", "25-49", "50-64", "65-69"]
+fig.add_trace(
+    go.Bar(
+        x=ages, y=total_1,
+        name="Total population",
+    ),
+    row=1,
+    col=1,
+)
+
+all_emp_1 = []
+for i in range(1, 5):
+    all_emp_1.append(all_emp[i]*1000)
+
+fig.add_trace(
+    go.Bar(
+        x=ages, y=all_emp_1,
+        name="All in employment",
+    ),
+    row=1,
+    col=2,
+)
+
+
+finance_1 = []
+for i in range(1, 5):
+    finance_1.append(finance[i]*1000)
+
+fig.add_trace(
+    go.Bar(
+        x=ages, y=finance_1,
+        name="Finance Industry",
+    ),
+    row=1,
+    col=3,
+)
+x_axis_config = {"title": "Age Groups"}
+y_axis_config = {"title": "Number of people"}
+fig.update_layout(
+                title="Age Distribution of Work Force",
+                xaxis=x_axis_config, yaxis=y_axis_config,
+    )
+
+fig.show()
