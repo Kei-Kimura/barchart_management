@@ -4,7 +4,7 @@ from plotly import graph_objects as go
 import openpyxl
 
 
-df = pd.read_excel(r'C:\Users\Dell\Desktop\OneDrive - City, University of London\Documents\BM1100\project\red02nov2021_edited.xlsx')
+df = pd.read_excel(r'HIDDEN\red02nov2021_edited.xlsx')
 
 print(df)
 
@@ -14,7 +14,7 @@ all_emp = list(df.iloc[1])
 finance = list(df.iloc[2])
 print(total, all_emp, finance)
 
-# Now make a bar chart with 3 grouped bar charts with age groups
+# Now make 3 grouped bar charts (total population, all employed, finance)
 
 fig = make_subplots(rows=1, cols=3)
 
